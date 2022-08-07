@@ -1,0 +1,8 @@
+.textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.messages {
+    padding: 20px;
+}

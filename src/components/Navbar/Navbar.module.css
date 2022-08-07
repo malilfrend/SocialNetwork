@@ -1,0 +1,15 @@
+.nav {
+    grid-area: nav;
+    background-color: green;
+}
+
+.item  a{
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+/*a:visited {*/
+/*    text-decoration: none;*/
+/*}*/

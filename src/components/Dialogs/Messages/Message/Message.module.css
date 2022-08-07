@@ -1,0 +1,6 @@
+.message {
+    background-color: greenyellow;
+}
+.message:nth-child(2n) {
+    text-align: end;
+}

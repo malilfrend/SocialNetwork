@@ -1,0 +1,1 @@
+import React from 'react';import DialogItem from "./DialogItem/DialogItem";const DialogItems = (props) => {		const dialogsElements = props.dialogsData		.map(			d => <DialogItem name={d.name} id={d.id} key={d.id}/>		)		return (		<div>			{dialogsElements}		</div>	);};export default DialogItems;

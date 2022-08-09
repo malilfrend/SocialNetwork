@@ -1,7 +1,8 @@
-.post {
-    color: green;
+.myPosts {
+    background-color: gray;
+    padding: 20px;
 }
 
-.myPosts {
-    background-color: blue;
+.new_posts {
+    margin-bottom: 10px;
 }

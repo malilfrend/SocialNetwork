@@ -1,0 +1,10 @@
+.friends h3 {
+    color: white;
+}
+.friends_flex {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    display: grid;
+    grid-template-columns: 3;
+    grid-template-rows: 1;
+}

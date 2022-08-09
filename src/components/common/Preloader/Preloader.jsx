@@ -1,0 +1,1 @@
+import React from 'react';import classes from "./Preloader.module.css";import preloader from "../../../assets/loader/Ball-0.8s-221px.svg";const Preloader = () => {	return (		<div className={classes.preloaderFrame}>			<img src={preloader} className={classes.preloader} alt={'lol'}/>		</div>	);};export default Preloader;

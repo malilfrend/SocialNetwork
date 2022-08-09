@@ -1,0 +1,22 @@
+.friends_grid_item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.avatar {
+    background-color: white;
+    padding: 5px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: auto;
+    overflow: hidden;
+}
+.avatar img {
+    height: 50px;
+    width: 50px;
+}
+.name {
+
+}

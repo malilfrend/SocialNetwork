@@ -10,6 +10,7 @@ const ProfileInfo = (props) => {
     if(!props.profile) {
         return <Preloader/>
     }
+    
     return (
         <div className={classes.profile_info}>
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Wide_lightning.jpg" alt=""/>

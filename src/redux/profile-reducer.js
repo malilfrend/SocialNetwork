@@ -1,6 +1,9 @@
+import {usersAPI} from "../api/api";
+
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const SER_USER_PROFILE = 'SET-USER-PROFILE'
+const SET_USER_STATUS = 'SET_USER_STATUS'
 
 let initialState = {
     postsData: [
@@ -9,6 +12,7 @@ let initialState = {
     ],
     newPostText: '',
     profile: null,
+    status: null,
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -35,11 +39,16 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 profile: action.profile
             }
+        case SET_USER_STATUS:
+            return {
+                ...state,
+                status: action.status
+            }
         default:
             return state
     }
 }
-
+// actionCreators
 const addNewPostActionCreator = () => {
     return {
         type: ADD_POST,
@@ -57,5 +66,31 @@ const setUserProfile = (profile) => {
         profile
     }
 }
-
+const setUserStatus = (status) => {
+    return {
+        type: SET_USER_STATUS,
+        status
+    }
+}
+// thunkCreators
+export const getUserProfileThunk = (userId) => {
+    return (
+        (dispatch) => {
+            usersAPI.getUserProfile(userId)
+                .then(data => {
+                    dispatch(setUserProfile(data))
+                })
+        }
+    )
+}
+export const setUserStatusThunk = (userId) => {
+    return (
+        (dispatch) => {
+            usersAPI.getUserStatus(userId)
+                .then(status => {
+                    dispatch(setUserStatus(status))
+                })
+        }
+    )
+}
 export {profileReducer, addNewPostActionCreator, onPostChangeActionCreator, setUserProfile}

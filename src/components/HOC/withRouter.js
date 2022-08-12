@@ -1,0 +1,1 @@
+import React from 'react';import {useParams} from "react-router-dom";function withRouter(Component) {		function ComponentWithRouterProp(props) {		let {userId} = useParams()		return (			<Component				{...props}				userId={userId}			/>		)	}		return ComponentWithRouterProp;}export default withRouter;

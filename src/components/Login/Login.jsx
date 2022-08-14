@@ -1,1 +1,1 @@
-import React from 'react';const Login = () => {	return (		<div>			<div>Insert your login</div>			<div>_________________</div>			<div>Insert your password</div>			<div>_________________</div>		</div>	);};export default Login;
+import React from 'react';import LoginForm from "./LoginForm";const Login = () => {	return (		<div>			<h1>Login</h1>			<LoginForm/>		</div>	)}export default Login;

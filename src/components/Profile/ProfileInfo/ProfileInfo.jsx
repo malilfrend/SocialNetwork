@@ -11,6 +11,10 @@ const ProfileInfo = (props) => {
     const contacts = {...props?.profile?.contacts}
     const status = props.status
     
+    const updateStatus = () => {
+        props.updateUserStatusThunk()
+    }
+    
     if(!props.profile) {
         return <Preloader/>
     }
@@ -30,7 +34,10 @@ const ProfileInfo = (props) => {
                 </div>
                 <hr/>
                 <div className={classes.status}>
-                    <ProfileStatus status={status}/>
+                    <ProfileStatus
+                        status={status}
+                        updateUserStatusThunk={props.updateUserStatusThunk}
+                    />
                 </div>
                 <hr/>
                 <div className={classes.information}>

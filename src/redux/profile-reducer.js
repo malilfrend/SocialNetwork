@@ -1,4 +1,4 @@
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
@@ -12,7 +12,7 @@ let initialState = {
     ],
     newPostText: '',
     profile: null,
-    status: null,
+    status: '',
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -76,7 +76,7 @@ const setUserStatus = (status) => {
 export const getUserProfileThunk = (userId) => {
     return (
         (dispatch) => {
-            usersAPI.getUserProfile(userId)
+            profileAPI.getUserProfile(userId)
                 .then(data => {
                     dispatch(setUserProfile(data))
                 })
@@ -86,9 +86,24 @@ export const getUserProfileThunk = (userId) => {
 export const setUserStatusThunk = (userId) => {
     return (
         (dispatch) => {
-            usersAPI.getUserStatus(userId)
+            profileAPI.getUserStatus(userId)
                 .then(status => {
                     dispatch(setUserStatus(status))
+                })
+        }
+    )
+}
+export const updateUserStatusThunk = (status) => {
+    return (
+        (dispatch) => {
+            profileAPI.updateUserStatus(status)
+                .then(r => {
+                    if(r.data.resultCode == 0) {
+                        dispatch(setUserStatus(status))
+                    }
+                    if (r.data.resultCode != 0) {
+                        dispatch(setUserStatus('Error! Try another status'))
+                    }
                 })
         }
     )

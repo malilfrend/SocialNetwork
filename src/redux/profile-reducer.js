@@ -1,7 +1,6 @@
 import {profileAPI, usersAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const SER_USER_PROFILE = 'SET-USER-PROFILE'
 const SET_USER_STATUS = 'SET_USER_STATUS'
 
@@ -10,7 +9,6 @@ let initialState = {
         { id: 1, message: 'It is my first post', likeCount: 15,},
         { id: 2, message: 'Hi, whats up', likeCount: 20,},
     ],
-    newPostText: '',
     profile: null,
     status: '',
 }
@@ -21,18 +19,12 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST:
             const newPost = {
                 id: 3,
-                message: state.newPostText,
+                message: action.post,
                 likeCount: 0,
             }
             return {
                 ...state,
-                newPostText: '',
                 postsData: [...state.postsData, newPost]
-            }
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.newText
             }
         case SER_USER_PROFILE:
             return {
@@ -49,15 +41,10 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 // actionCreators
-const addNewPostActionCreator = () => {
+const addNewPostActionCreator = (post) => {
     return {
         type: ADD_POST,
-    }
-}
-const onPostChangeActionCreator = (inputText) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: inputText,
+        post
     }
 }
 const setUserProfile = (profile) => {
@@ -108,4 +95,4 @@ export const updateUserStatusThunk = (status) => {
         }
     )
 }
-export {profileReducer, addNewPostActionCreator, onPostChangeActionCreator, setUserProfile}
+export {profileReducer, addNewPostActionCreator, setUserProfile}

@@ -15,7 +15,6 @@ let initialState = {
         {id: 2, text: 'hi, its ok'},
         {id: 3, text: 'goodjob'}
     ],
-    newMessageText: ''
 }
 
 const dialogsReducer = (state = initialState, action) => {
@@ -24,34 +23,22 @@ const dialogsReducer = (state = initialState, action) => {
         case ADD_MESSAGE:
             const newMessage = {
                 id: 4,
-                text: state.newMessageText
+                text: action.newMessage
             }
             return {
                 ...state,
-                newMessageText: '',
                 messagesData: [...state.messagesData, newMessage ]
-            }
-        case UPDATE_NEW_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessageText: action.newText,
             }
         default:
             return state
     }
 }
 
-const addNewMessageActionCreator = () => {
+const addNewMessageActionCreator = (newMessage) => {
     return {
         type: ADD_MESSAGE,
+        newMessage
     }
 }
 
-const updateMessageTextActionCreator = (textAreaText) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_TEXT,
-        newText: textAreaText,
-    }
-}
-
-export {dialogsReducer, addNewMessageActionCreator, updateMessageTextActionCreator}
+export {dialogsReducer, addNewMessageActionCreator}

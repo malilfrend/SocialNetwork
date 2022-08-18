@@ -6,8 +6,9 @@ const MessageForm = (props) => {
 	return (
 		<Formik
 			initialValues={{message: ''}}
-			onSubmit={(formData)=> {
+			onSubmit={(formData, {resetForm})=> {
 				props.onSubmit(formData.message)
+				resetForm({values: ''})
 			}}
 		>
 			{() => (

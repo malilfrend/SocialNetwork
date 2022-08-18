@@ -11,10 +11,6 @@ const ProfileInfo = (props) => {
     const contacts = {...props?.profile?.contacts}
     const status = props.status
     
-    const updateStatus = () => {
-        props.updateUserStatusThunk()
-    }
-    
     if(!props.profile) {
         return <Preloader/>
     }

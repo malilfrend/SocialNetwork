@@ -1,0 +1,7 @@
+.selected_page {
+    font-weight: bold;
+}
+
+span {
+    cursor: pointer;
+}

@@ -26,7 +26,7 @@ const App = (props) => {
 	
 	useEffect(() => {
 		initializeAppFunc()
-	}, [props.initialized])
+	})
 	
 	if (!props.initialized) return <Preloader/>
 	

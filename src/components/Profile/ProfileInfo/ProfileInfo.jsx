@@ -4,6 +4,7 @@ import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatus from "./profileStatus/ProfileStatus";
 import Contacts from "./contacts/Contacts";
 import LookingForJobInfo from "./lookingForJob/LokingForJobInfo";
+import userPhoto from "./../../../assets/images/userPhoto.png"
 
 const ProfileInfo = (props) => {
     
@@ -20,7 +21,7 @@ const ProfileInfo = (props) => {
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Wide_lightning.jpg" alt=""/>
             <div>
                 <div className={classes.avatar}>
-                    <img src={profile?.photos?.large} alt="" className={classes.avatar_photo}/>
+                    <img src={profile?.photos?.large || userPhoto} alt={''} className={classes.avatar_photo}/>
                 </div>
                 <div className={classes.fullname}>
                     {profile?.fullName}

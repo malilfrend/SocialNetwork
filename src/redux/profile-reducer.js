@@ -1,9 +1,9 @@
 import {profileAPI} from "../api/api";
 
-const ADD_POST = 'ADD-POST'
-const DELETE_POST = 'DELETE_POST'
-const SER_USER_PROFILE = 'SET-USER-PROFILE'
-const SET_USER_STATUS = 'SET_USER_STATUS'
+const ADD_POST = 'social_network/profile/ADD-POST'
+const DELETE_POST = 'social_network/profile/DELETE_POST'
+const SER_USER_PROFILE = 'social_network/profile/SET-USER-PROFILE'
+const SET_USER_STATUS = 'social_network/profile/SET_USER_STATUS'
 
 let initialState = {
     postsData: [
@@ -72,39 +72,27 @@ const setUserStatus = (status) => {
     }
 }
 // thunkCreators
-export const getUserProfileThunk = (userId) => {
-    return (
-        (dispatch) => {
-            profileAPI.getUserProfile(userId)
-                .then(data => {
-                    dispatch(setUserProfile(data))
-                })
-        }
-    )
+export const getUserProfileThunk = (userId) => async (dispatch) => {
+    let data = await profileAPI.getUserProfile(userId)
+    dispatch(setUserProfile(data))
 }
-export const setUserStatusThunk = (userId) => {
-    return (
-        (dispatch) => {
-            profileAPI.getUserStatus(userId)
-                .then(status => {
-                    dispatch(setUserStatus(status))
-                })
-        }
-    )
+
+
+export const setUserStatusThunk = (userId) => async (dispatch) => {
+    let status = await profileAPI.getUserStatus(userId)
+    dispatch(setUserStatus(status))
 }
-export const updateUserStatusThunk = (status) => {
-    return (
-        (dispatch) => {
-            profileAPI.updateUserStatus(status)
-                .then(r => {
-                    if(r.data.resultCode == 0) {
-                        dispatch(setUserStatus(status))
-                    }
-                    if (r.data.resultCode != 0) {
-                        dispatch(setUserStatus('Error! Try another status'))
-                    }
-                })
-        }
-    )
+
+
+export const updateUserStatusThunk = (status) => async (dispatch) => {
+    let r = await profileAPI.updateUserStatus(status)
+    if (r.data.resultCode === 0) {
+        dispatch(setUserStatus(status))
+    }
+    if (r.data.resultCode !== 0) {
+        dispatch(setUserStatus('Error! Try another status'))
+    }
 }
+
+
 export {profileReducer, addNewPostActionCreator, deletePostActionCreator, setUserProfile}

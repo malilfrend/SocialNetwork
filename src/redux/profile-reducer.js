@@ -1,6 +1,7 @@
-import {profileAPI, usersAPI} from "../api/api";
+import {profileAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST'
+const DELETE_POST = 'DELETE_POST'
 const SER_USER_PROFILE = 'SET-USER-PROFILE'
 const SET_USER_STATUS = 'SET_USER_STATUS'
 
@@ -26,6 +27,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 postsData: [...state.postsData, newPost]
             }
+        case DELETE_POST:
+            return {
+                ...state,
+                postsData: state.postsData.filter(p => p.id !== action.postId)
+            }
         case SER_USER_PROFILE:
             return {
                 ...state,
@@ -45,6 +51,12 @@ const addNewPostActionCreator = (post) => {
     return {
         type: ADD_POST,
         post
+    }
+}
+const deletePostActionCreator = (postId) => {
+    return {
+        type: DELETE_POST,
+        postId
     }
 }
 const setUserProfile = (profile) => {
@@ -95,4 +107,4 @@ export const updateUserStatusThunk = (status) => {
         }
     )
 }
-export {profileReducer, addNewPostActionCreator, setUserProfile}
+export {profileReducer, addNewPostActionCreator, deletePostActionCreator, setUserProfile}

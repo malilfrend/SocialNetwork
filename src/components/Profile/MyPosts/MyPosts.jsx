@@ -13,7 +13,6 @@ const MyPosts = (props) => {
 	const onSubmit = (post) => {
 		props.addNewPost(post)
 	}
-	
 	return (
 		<div className={classes.myPosts}>
 			<h3>My posts</h3>

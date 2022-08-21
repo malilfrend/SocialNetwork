@@ -5,6 +5,7 @@ const DELETE_POST = 'social_network/profile/DELETE_POST'
 const SER_USER_PROFILE = 'social_network/profile/SET-USER-PROFILE'
 const SET_USER_STATUS = 'social_network/profile/SET_USER_STATUS'
 const TOGGLE_IS_FETCHING ='social_network/profile/TOGGLE_IS_FETCHING'
+const UPDATE_USER_PHOTO = 'social_network/profile/UPDATE_USER_PHOTO'
 
 let initialState = {
     postsData: [
@@ -49,6 +50,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 status: action.status
             }
+        case UPDATE_USER_PHOTO:
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
+            }
         default:
             return state
     }
@@ -78,10 +84,10 @@ const setUserStatus = (status) => {
         status
     }
 }
-const toggleIsFetching = (isFetching) => {
+const updateUserPhoto = (photos) => {
     return {
-        type: TOGGLE_IS_FETCHING,
-        isFetching
+        type: UPDATE_USER_PHOTO,
+        photos
     }
 }
 // thunkCreators
@@ -90,7 +96,13 @@ export const getUserProfileThunk = (userId) => async (dispatch) => {
     dispatch(setUserProfile(data))
 }
 
-
+export const saveUserPhoto = (photo) => async (dispatch) => {
+    let data = await profileAPI.uploadUserPhoto(photo)
+    
+    if (data.resultCode === 0) {
+        dispatch(updateUserPhoto(data.data.photos))
+    }
+}
 export const setUserStatusThunk = (userId) => async (dispatch) => {
     let status = await profileAPI.getUserStatus(userId)
     dispatch(setUserStatus(status))
@@ -98,11 +110,11 @@ export const setUserStatusThunk = (userId) => async (dispatch) => {
 
 
 export const updateUserStatusThunk = (status) => async (dispatch) => {
-    let r = await profileAPI.updateUserStatus(status)
-    if (r.data.resultCode === 0) {
+    let data = await profileAPI.updateUserStatus(status)
+    if (data.resultCode === 0) {
         dispatch(setUserStatus(status))
     }
-    if (r.data.resultCode !== 0) {
+    if (data.resultCode !== 0) {
         dispatch(setUserStatus('Error! Try another status'))
     }
 }

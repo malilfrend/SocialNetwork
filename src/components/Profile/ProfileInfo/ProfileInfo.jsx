@@ -12,6 +12,13 @@ const ProfileInfo = (props) => {
     const contacts = {...props?.profile?.contacts}
     const status = props.status
     
+    const onMainPhotoSelected = (e) => {
+        // e.preventDefault()
+        if(e.target.files.length) {
+            props.savePhoto(e.target.files[0])
+        }
+    }
+    
     return (
         <div className={classes.profile_info}>
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Wide_lightning.jpg" alt=""/>
@@ -19,6 +26,7 @@ const ProfileInfo = (props) => {
                 <div className={classes.avatar}>
                     <img src={profile?.photos?.large || userPhoto} alt={''} className={classes.avatar_photo}/>
                 </div>
+                {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
                 <div className={classes.fullname}>
                     {profile?.fullName}
                 </div>
@@ -34,7 +42,7 @@ const ProfileInfo = (props) => {
                 </div>
                 <hr/>
                 <div className={classes.information}>
-                    {/*<LookingForJobInfo profile={profile}/>*/}
+                    <LookingForJobInfo profile={profile}/>
                     <hr/>
                     <div className={classes.contacts}>
                         <Contacts contacts={contacts}/>

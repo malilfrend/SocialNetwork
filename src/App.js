@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Navbar from "./components/Navbar/Navbar";
 import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
@@ -11,11 +11,12 @@ import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import Login from "./components/Login/Login";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import withRouter from "./components/HOC/withRouter";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
+import store from "./redux/redux-store";
 
 
 const App = (props) => {
@@ -31,7 +32,7 @@ const App = (props) => {
 	if (!props.initialized) return <Preloader/>
 	
 	return (
-		<div className='app-wrapper'>
+		<div className='app-wrapper' role={"main"}>
 			<HeaderContainer/>
 			<Navbar/>
 			<div className='app-wrapper-content'>
@@ -57,7 +58,18 @@ let mapStateToProps = (state) => {
 	}
 }
 
-export default compose(
+const AppContainer = compose(
 	withRouter,
 	connect(mapStateToProps, {initializeApp})
 )(App)
+
+const AppSocialNetwork = () => {
+	return  <BrowserRouter>
+		<React.StrictMode>
+			<Provider store={store}>
+				< AppContainer/>
+			</Provider>
+		</React.StrictMode>
+	</BrowserRouter>
+}
+export default AppSocialNetwork

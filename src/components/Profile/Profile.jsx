@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Profile.module.css'
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import {updateUserInfoThunk} from "../../redux/profile-reducer";
 
 const Profile = (props) => {
     
@@ -13,6 +14,7 @@ const Profile = (props) => {
                 status={props.status}
                 updateUserStatusThunk={props.updateUserStatusThunk}
                 savePhoto={props.saveUserPhoto}
+                updateUserInfoThunk={props.updateUserInfoThunk}
             />
             <MyPostsContainer/>
         </div>

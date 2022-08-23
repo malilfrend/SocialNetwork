@@ -6,6 +6,7 @@ const SER_USER_PROFILE = 'social_network/profile/SET-USER-PROFILE'
 const SET_USER_STATUS = 'social_network/profile/SET_USER_STATUS'
 const TOGGLE_IS_FETCHING ='social_network/profile/TOGGLE_IS_FETCHING'
 const UPDATE_USER_PHOTO = 'social_network/profile/UPDATE_USER_PHOTO'
+const UPDATE_USER_INFO = 'social_network/profile/UPDATE_USER_INFO'
 
 let initialState = {
     postsData: [
@@ -55,6 +56,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 profile: {...state.profile, photos: action.photos}
             }
+        case UPDATE_USER_INFO:
+            return {
+                ...state,
+                profile: {...state.profile, ...action.info}
+            }
         default:
             return state
     }
@@ -90,6 +96,12 @@ const updateUserPhoto = (photos) => {
         photos
     }
 }
+const updateUserInfo = (info) => {
+    return {
+        type: UPDATE_USER_INFO,
+        info
+    }
+}
 // thunkCreators
 export const getUserProfileThunk = (userId) => async (dispatch) => {
     let data = await profileAPI.getUserProfile(userId)
@@ -117,6 +129,16 @@ export const updateUserStatusThunk = (status) => async (dispatch) => {
     if (data.resultCode !== 0) {
         dispatch(setUserStatus('Error! Try another status'))
     }
+}
+export const updateUserInfoThunk = (info, setStatus, setSubmitting) => async (dispatch) => {
+    let data = await  profileAPI.updateUserInfo(info)
+    if(data.resultCode === 0) {
+        dispatch(updateUserInfo(info))
+    }
+    if (data.resultCode !== 0) {
+        setStatus(data.messages)
+    }
+    setSubmitting(false)
 }
 
 

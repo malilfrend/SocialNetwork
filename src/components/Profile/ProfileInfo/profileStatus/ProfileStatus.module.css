@@ -2,3 +2,6 @@
     display: flex;
     flex-direction: column;
 }
+.status_span {
+    cursor: pointer;
+}

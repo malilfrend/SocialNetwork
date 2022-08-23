@@ -17,9 +17,14 @@ const ProfileStatus = (props) => {
 		<div>
 			{!editMode
 				? <div>
-					<span onDoubleClick={activeEditMode}>{props.status || 'No status here'}</span>
+					<span
+						className={props.isOwner ? classes.status_span : null}
+						onDoubleClick={props.isOwner ? activeEditMode : null}
+					>
+						{props.status || 'No status here'}
+					</span>
 				</div>
-				: <div>
+				:<div>
 					<Formik
 						initialValues={{status: props.status}}
 						onSubmit={(values) => {

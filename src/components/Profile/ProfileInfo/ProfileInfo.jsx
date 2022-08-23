@@ -1,56 +1,70 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classes from './ProfileInfo.module.css'
-import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatus from "./profileStatus/ProfileStatus";
 import Contacts from "./contacts/Contacts";
 import LookingForJobInfo from "./lookingForJob/LokingForJobInfo";
-import userPhoto from "./../../../assets/images/userPhoto.png"
+import ProfileAvatar from "./profileAvatar/ProfileAvatar";
+import ProfileDataForm from "./ProfileDataForm";
 
 const ProfileInfo = (props) => {
-    
-    const profile = props.profile
-    const contacts = {...props?.profile?.contacts}
-    const status = props.status
-    
-    const onMainPhotoSelected = (e) => {
-        // e.preventDefault()
-        if(e.target.files.length) {
-            props.savePhoto(e.target.files[0])
-        }
+    const [editProfile, setEditProfile] = useState(false)
+    const onEditProfile = () => {
+        setEditProfile(!editProfile)
     }
     
     return (
         <div className={classes.profile_info}>
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Wide_lightning.jpg" alt=""/>
-            <div>
-                <div className={classes.avatar}>
-                    <img src={profile?.photos?.large || userPhoto} alt={''} className={classes.avatar_photo}/>
-                </div>
-                {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
-                <div className={classes.fullname}>
-                    {profile?.fullName}
-                </div>
-                <div className={classes.description}>
-                    {profile?.aboutMe}
-                </div>
-                <hr/>
-                <div className={classes.status}>
-                    <ProfileStatus
-                        status={status}
-                        updateUserStatusThunk={props.updateUserStatusThunk}
+            {props.isOwner && <button onClick={onEditProfile}>Edit profile</button>}
+            {
+                !editProfile ? <ProfileData {...props}/> :
+                    <ProfileDataForm
+                        profile={props.profile}
+                        onEditProfile={onEditProfile}
+                        updateUserInfoThunk={props.updateUserInfoThunk}
                     />
-                </div>
+            }
+        </div>
+    )
+}
+
+export default ProfileInfo;
+
+const ProfileData = (props) => {
+    
+    const profile = props.profile
+    const contacts = {...props?.profile?.contacts}
+    const status = props.status
+    
+    return (
+        <div>
+            <ProfileAvatar
+                photo={profile?.photos?.large}
+                savePhoto={props.savePhoto}
+                isOwner={props.isOwner}
+            />
+            <div className={classes.fullname}>
+                {profile?.fullName}
+            </div>
+            <div className={classes.description}>
+                {profile?.aboutMe}
+            </div>
+            <hr/>
+            <div className={classes.status}>
+                <ProfileStatus
+                    isOwner={props.isOwner}
+                    status={status}
+                    updateUserStatusThunk={props.updateUserStatusThunk}
+                />
+            </div>
+            <hr/>
+            <div className={classes.information}>
+                <LookingForJobInfo profile={profile}/>
                 <hr/>
-                <div className={classes.information}>
-                    <LookingForJobInfo profile={profile}/>
-                    <hr/>
-                    <div className={classes.contacts}>
-                        <Contacts contacts={contacts}/>
-                    </div>
+                <div className={classes.contacts}>
+                    <Contacts contacts={contacts}/>
                 </div>
             </div>
         </div>
-    );
-};
-
-export default ProfileInfo;
+    )
+}

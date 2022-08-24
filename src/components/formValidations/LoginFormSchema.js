@@ -6,7 +6,7 @@ const loginFormSchema = Yup.object().shape({
 		.min(2, "Must be longer than 2 characters")
 		.required("Required"),
 	password: Yup.string()
-		.min(8, "Must be longer than 8 characters")
+		.min(2, "Must be longer than 2 characters")
 		.max(30, "Good password, but it's so big")
 		.required("Required")
 });

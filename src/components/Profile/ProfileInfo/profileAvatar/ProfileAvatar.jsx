@@ -1,20 +1,45 @@
 import React from 'react';
 import classes from "./ProfileAvatar.module.css";
 import userPhoto from "../../../../assets/images/userPhoto.png";
+import Button from "@mui/material/Button";
 
 const ProfileAvatar = ({photo, isOwner, savePhoto}) => {
+	
 	const onMainPhotoSelected = (e) => {
 		if(e.target.files.length) {
 			savePhoto(e.target.files[0])
 		}
 	}
+	
 	return (
-		<div>
-			<div className={classes.avatar}>
-				<img src={photo || userPhoto} alt={''} className={classes.avatar_photo}/>
+		<div className={classes.avatarSection}>
+			<div className={classes.avatarBlock}>
+				<img src={photo || userPhoto} alt={''} className={classes.avatarPhoto}/>
 			</div>
 			<div>
-				{isOwner && <input type={'file'} className={classes.input_photo} onChange={onMainPhotoSelected}/>}
+				{isOwner &&
+					<div>
+						<input
+							accept="image/*"
+							className={classes.input}
+							style={{ display: 'none' }}
+							id="raised-button-file"
+							multiple
+							type="file"
+							onChange={onMainPhotoSelected}
+						/>
+						<label htmlFor="raised-button-file">
+							<Button
+								variant="outlined"
+								size="small"
+								component="span"
+								className={classes.button}
+							>
+								Upload new photo
+							</Button>
+						</label>
+					</div>
+				}
 			</div>
 		</div>
 	)

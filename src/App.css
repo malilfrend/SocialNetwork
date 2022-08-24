@@ -14,4 +14,6 @@
     grid-area: content;
     background-color: lightgray;
     padding: 20px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
 }

@@ -1,6 +1,15 @@
-
-
-.content img {
-    width: 100%;
-}
+/*.content {*/
+/*    display: grid;*/
+/*    grid-template-areas:*/
+/*    "profileInfo"*/
+/*    "posts";*/
+/*    grid-template-columns: 1fr;*/
+/*    grid-template-rows: 50vh 50vh;*/
+/*}*/
+/*.profileInfoContainer{*/
+/*    grid-area: profileInfo;*/
+/*}*/
+/*.postsContainer{*/
+/*    grid-area: posts;*/
+/*}*/
 

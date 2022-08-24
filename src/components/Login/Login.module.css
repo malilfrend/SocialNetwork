@@ -9,10 +9,15 @@
     margin-bottom: 20px;
 }
 .loginBlock {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     width: 50vw;
 }
 .logInBtn {
     display: inline-block;
     align-self: flex-end;
+}
+.error {
+    color: red;
+    font-size: smaller;
+    margin-bottom: 10px;
 }

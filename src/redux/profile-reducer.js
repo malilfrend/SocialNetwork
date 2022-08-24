@@ -44,7 +44,7 @@ const profileReducer = (state = initialState, action) => {
         case SER_USER_PROFILE:
             return {
                 ...state,
-                profile: action.profile
+                profile: {...action.profile, contacts: {...action.profile.contacts}}
             }
         case SET_USER_STATUS:
             return {
@@ -122,13 +122,19 @@ export const setUserStatusThunk = (userId) => async (dispatch) => {
 
 
 export const updateUserStatusThunk = (status) => async (dispatch) => {
-    let data = await profileAPI.updateUserStatus(status)
-    if (data.resultCode === 0) {
-        dispatch(setUserStatus(status))
+    try {
+        let data = await profileAPI.updateUserStatus(status)
+        if (data.resultCode === 0) {
+            dispatch(setUserStatus(status))
+        }
+        if (data.resultCode !== 0) {
+            dispatch(setUserStatus('Error! Try another status'))
+        }
     }
-    if (data.resultCode !== 0) {
-        dispatch(setUserStatus('Error! Try another status'))
+    catch (error) {
+        alert("something wrong")
     }
+    
 }
 export const updateUserInfoThunk = (info, setStatus, setSubmitting) => async (dispatch) => {
     let data = await  profileAPI.updateUserInfo(info)

@@ -4,6 +4,7 @@ import statusFormSchema from "../../../formValidations/StatusFormSchema";
 import classes from "./ProfileStatus.module.css";
 
 const ProfileStatus = (props) => {
+	
 	const [editMode, setEditMode] = useState(false)
 	
 	const activeEditMode = () => {

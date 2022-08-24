@@ -10,9 +10,9 @@ let initialState = {
         {id: 6, name: 'Roma'}
     ],
     messagesData: [
-        {id: 1, text: 'Hi, whats up'},
-        {id: 2, text: 'hi, its ok'},
-        {id: 3, text: 'goodjob'}
+        // {id: 1, text: 'Hi, whats up'},
+        // {id: 2, text: 'hi, its ok'},
+        // {id: 3, text: 'goodjob'}
     ],
 }
 
@@ -21,7 +21,7 @@ const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
             const newMessage = {
-                id: 4,
+                id: Math.random(),
                 text: action.newMessage
             }
             return {

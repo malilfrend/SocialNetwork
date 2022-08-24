@@ -6,39 +6,45 @@ import {addNewMessageActionCreator} from "../../redux/dialogs-reducer";
 import DialogItems from "./DialogItems/DialogItems";
 import Messages from "./Messages/Messages";
 import {compose} from "redux";
+import withRouter from "../HOC/withRouter";
+import {useParams} from "react-router-dom";
 
 const Dialogs = (props) => {
     
-    return (
-        
-        <div className={classes.dialogs}>
+    let {userId} =  useParams()
+    
+	return (
+		
+		<div className={classes.dialogs}>
+			
+			<div className={classes.dialogs_items}>
+				<DialogItems dialogsPage={props.dialogsPage}/>
+			</div>
+            {
+                userId ? <Messages
+                    dialogsPage={props.dialogsPage}
+                    addNewMessage={props.addNewMessage}
+                />
+                    : null
+            }
             
-            <div className={classes.dialogs_items}>
-                < DialogItems dialogsPage={props.dialogsPage}/>
-            </div>
-            
-            <Messages
-                dialogsPage={props.dialogsPage}
-                addNewMessage={props.addNewMessage}
-            />
-        
-        </div>
-    )
+		</div>
+	)
 }
 
 
 let mapStateToProps = (state) => {
-    return {
-        dialogsPage: state.dialogsPage,
-    }
+	return {
+		dialogsPage: state.dialogsPage,
+	}
 }
 let mapDispatchToProps = (dispatch) => {
-    return {
-        addNewMessage: (message) => {
-            dispatch(addNewMessageActionCreator(message))
-        },
-    }
+	return {
+		addNewMessage: (message) => {
+			dispatch(addNewMessageActionCreator(message))
+		},
+	}
 }
 
 export default compose(connect(mapStateToProps, mapDispatchToProps),
-    withAuthRedirect)(Dialogs)
+	withAuthRedirect)(Dialogs)

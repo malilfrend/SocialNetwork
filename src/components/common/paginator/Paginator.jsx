@@ -7,7 +7,7 @@ const Paginator = (props) => {
 	
 	return (
 		<div>
-			<Pagination count={pagesCount} variant="outlined" onChange={(event, page) => {
+			<Pagination count={pagesCount} page={props.currentPage} variant="outlined" onChange={(event, page) => {
 				props.onPageChanched(page)
 			}}/>
 		</div>

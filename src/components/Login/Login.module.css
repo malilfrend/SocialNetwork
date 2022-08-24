@@ -1,0 +1,18 @@
+.loginPage {
+    font-size: medium;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.h1 {
+    margin-bottom: 20px;
+}
+.loginBlock {
+    margin-bottom: 10px;
+    width: 50vw;
+}
+.logInBtn {
+    display: inline-block;
+    align-self: flex-end;
+}

@@ -1,0 +1,10 @@
+.aboutMe {
+    display: flex;
+    margin-bottom: 10px;
+}
+.text {
+    width: 20vw;
+}
+.info {
+    width: 20vw;
+}

@@ -1,6 +1,8 @@
 .myPosts {
-    background-color: gray;
+    background-color: #333333;
     padding: 20px;
+    border: 1px solid #333333;
+    border-radius: 10px;
 }
 
 .new_posts {

@@ -2,8 +2,7 @@ import * as Yup from "yup";
 
 const statusFormSchema = Yup.object().shape({
 	status: Yup.string()
-		//минимальная длина - 2 символа
-		.min(1, "Must be longer than 1 characters")
+		.max(300, "Must be less than 300 characters")
 })
 
 export default statusFormSchema;

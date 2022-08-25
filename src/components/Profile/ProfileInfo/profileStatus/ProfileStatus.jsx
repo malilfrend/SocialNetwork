@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import statusFormSchema from "../../../formValidations/StatusFormSchema";
 import classes from "./ProfileStatus.module.css";
+import {TextField} from "@mui/material";
+import Button from "@mui/material/Button";
 
 const ProfileStatus = (props) => {
 	
@@ -15,14 +17,14 @@ const ProfileStatus = (props) => {
 		props.updateUserStatusThunk(status)
 	}
 	return (
-		<div>
+		<div className={classes.status}>
 			{!editMode
 				? <div>
 					<span
 						className={props.isOwner ? classes.status_span : null}
 						onDoubleClick={props.isOwner ? activeEditMode : null}
 					>
-						{props.status || 'No status here'}
+						{ ((props.isOwner && props.status) ||( props.isOwner && 'setStatus')) || props.status || '' }
 					</span>
 				</div>
 				:<div>
@@ -31,27 +33,29 @@ const ProfileStatus = (props) => {
 						onSubmit={(values) => {
 							deactivateEditMode(values.status)
 						}}
-						validate={values => {
-							const errors = {};
-							if (!values.status) {
-								errors.status = 'Must be more than 1 symbol';
-							}
-							return errors;
-						}}
 						validationSchema={statusFormSchema}
 					>
-						{() => (
+						{({values, handleChange}) => (
 							<Form>
 								<div className={classes.status}>
-									<Field
+									<TextField
+										className={classes.statusInput}
+										value={values.status}
+										variant="filled"
 										type={'text'}
+										fullWidth
+										autoFocus
+										sx={{ input: { color: 'white'},
+										}}
 										name={'status'}
+										onChange={handleChange}
 										placeholder={'insert your status'}
-										autoFocus={true}
-										component={'textarea'}
+										size="small"
 									/>
+									<Button color="primary" variant="contained" type="submit" size="small">
+										Set status
+									</Button>
 									<ErrorMessage name="status" component="div"/>
-									<button type={'submit'}>Set status</button>
 								</div>
 							</Form>
 						)

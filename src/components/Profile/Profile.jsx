@@ -8,7 +8,6 @@ const Profile = (props) => {
     
     return (
         <div className={classes.content}>
-            <div className={classes.profileInfoContainer}>
                 <ProfileInfo
                     isOwner={props.isOwner}
                     profile={props.profile}
@@ -17,10 +16,7 @@ const Profile = (props) => {
                     savePhoto={props.saveUserPhoto}
                     updateUserInfoThunk={props.updateUserInfoThunk}
                 />
-            </div>
-            <div className={classes.postsContainer}>
                 <MyPostsContainer/>
-            </div>
         </div>
     );
 };

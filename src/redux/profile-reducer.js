@@ -148,4 +148,4 @@ export const updateUserInfoThunk = (info, setStatus, setSubmitting) => async (di
 }
 
 
-export {profileReducer, addNewPostActionCreator, deletePostActionCreator, setUserProfile}
+export {profileReducer, addNewPostActionCreator, deletePostActionCreator, setUserProfile, setUserStatus}

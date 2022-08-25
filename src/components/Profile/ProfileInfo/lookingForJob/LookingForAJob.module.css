@@ -1,0 +1,22 @@
+.job {
+    margin-bottom: 10px;
+}
+.lookingForJob {
+    display: flex;
+    margin-bottom: 10px;
+}
+.text {
+    width: 20vw;
+}
+.info {
+    width: 20vw;
+}
+.lookingForJobDescription {
+    display: flex;
+}
+.aboutJob {
+    width: 20vw;
+}
+.aboutJobDescrition {
+    width: 20vw;
+}

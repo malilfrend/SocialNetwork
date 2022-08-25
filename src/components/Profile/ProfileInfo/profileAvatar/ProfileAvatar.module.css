@@ -1,13 +1,22 @@
-/*.avatarSection {*/
-/*    display: inline-block;*/
-/*    background-color: #222222;*/
-/*    width: 50%;*/
-/*    height: 40vh;*/
-/*}*/
-/*.avatarBlock {*/
-/*    width: 160px;*/
-/*    border-radius: 10px;*/
-/*    overflow: hidden;*/
-/*}*/
-/*.avatarPhoto {*/
-/*}*/
+.avatarSection {
+    background-color: #333333;
+    width: 30%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+.avatarBlock {
+    width: 90%;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+.avatarPhoto {
+    display: inline-block;
+    width: 100%;
+}

@@ -6,6 +6,8 @@ import LookingForJobInfo from "./lookingForJob/LokingForJobInfo";
 import ProfileAvatar from "./profileAvatar/ProfileAvatar";
 import ProfileDataForm from "./ProfileDataForm";
 import EditIcon from '@mui/icons-material/Edit';
+import FullName from "./fullName/FullName";
+import AboutMe from "./aboutMe/AboutMe";
 
 const ProfileInfo = (props) => {
 	const [editProfile, setEditProfile] = useState(false)
@@ -42,38 +44,24 @@ const ProfileData = (props) => {
 	
 	return (
 		<div className={classes.profileData}>
-			<div className={classes.avatarBlock}>
-				<ProfileAvatar
-					photo={profile?.photos?.large}
-					savePhoto={props.savePhoto}
-					isOwner={props.isOwner}
-				/>
-			</div>
-			
-			<div className={classes.info}>
-				<div className={classes.fullNameNstatus}>
-					<div className={classes.fullname}>
-						{profile?.fullName}
-					</div>
-					<div className={classes.status}>
-						<ProfileStatus
-							isOwner={props.isOwner}
-							status={status}
-							updateUserStatusThunk={props.updateUserStatusThunk}
-						/>
-					</div>
+			<ProfileAvatar
+				photo={profile?.photos?.large}
+				savePhoto={props.savePhoto}
+				isOwner={props.isOwner}
+			/>
+			<div className={classes.mainInfo}>
+				<div className={classes.nameAndStatus}>
+					<FullName fullName={profile?.fullName}/>
+					<ProfileStatus
+						isOwner={props.isOwner}
+						status={status}
+						updateUserStatusThunk={props.updateUserStatusThunk}
+					/>
 				</div>
-				<div className={classes.description}>
-					{profile?.aboutMe}
-				</div>
-				<hr/>
-				<div className={classes.information}>
-					<LookingForJobInfo profile={profile}/>
-					<hr/>
-					<div className={classes.contacts}>
-						<Contacts contacts={contacts}/>
-					</div>
-				</div>
+				
+				<AboutMe aboutMe={profile?.aboutMe}/>
+				<LookingForJobInfo profile={profile}/>
+				<Contacts contacts={contacts}/>
 			</div>
 		</div>
 	)

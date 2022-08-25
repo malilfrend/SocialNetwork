@@ -1,7 +1,11 @@
 .status {
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
 }
 .status_span {
     cursor: pointer;
+}
+.statusInput{
+    margin-bottom: 5px;
 }

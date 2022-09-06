@@ -5,17 +5,21 @@ import MyPostsForm from "./MyPostsForm";
 
 const MyPosts = (props) => {
 	
-	let postsElements = props.postsData
+	if(!props.postsData) {
+		return <div>Skeleton</div>
+	}
+	let postsElements = props?.postsData
 		.map(p =>
-			<Post message={p.message} likeCount={p.likeCount} key={Date.now() + Math.random()}/>
+			<Post title={p.title} body={p.body} photo={props?.photo} key={Math.random() + Math.random()}/>
 		)
 	
-	const onSubmit = (post) => {
-		props.addNewPost(post)
+	const onSubmit = (title, body) => {
+		props.addNewPost(title, body)
 	}
+
 	return (
 		<div className={classes.myPosts}>
-			<h3>My posts</h3>
+			<h1 className={classes.h1}>My posts</h1>
 			<div className={classes.new_posts}>
 			
 			</div>

@@ -1,20 +1,48 @@
 import React from 'react';
-import {Formik, Form, Field, ErrorMessage, useFormik} from "formik";
+import {Formik, Form, Field} from "formik";
+import {TextField} from "@mui/material";
+import Button from "@mui/material/Button";
+import classes from './MyPosts.module.css'
 
 const MyPostsForm = (props) => {
 	
 	return (
 		<Formik
-			initialValues={{postText: ''}}
+			initialValues={{title: '', body: ''}}
 			onSubmit={(formData, {resetForm}) => {
-				props.onSubmit(formData.postText)
+				props.onSubmit(formData.title, formData.body)
 				resetForm({values: ''})
 			}}>
-			{() => (
-				<Form>
-					<Field placeholder={'Insert your post message'} type={'text'} name={'postText'}/>
+			{( {values, handleChange}) => (
+				<Form className={classes.newPostForm}>
+					<TextField
+						fullWidth
+						type={'title'}
+						value={values.title}
+						placeholder={'Title of your post'}
+						variant="filled"
+						onChange={handleChange}
+						name={'title'}
+						inputProps={{style: {fontSize: 18}}}
+						size="small"
+						className={classes.title}
+					/>
+					<TextField
+						fullWidth
+						type={'body'}
+						value={values.body}
+						placeholder={'Text of your post'}
+						variant="filled"
+						onChange={handleChange}
+						name={'body'}
+						inputProps={{style: {fontSize: 18}}}
+						size="small"
+						className={classes.body}
+					/>
 					<div>
-						<button type={"submit"}>Add new posts</button>
+						<Button color="primary" variant="contained" type="submit" className={classes.logInBtn}>
+							Post
+						</Button>
 					</div>
 				</Form>
 			)}

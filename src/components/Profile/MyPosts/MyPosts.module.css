@@ -8,3 +8,19 @@
 .new_posts {
     margin-bottom: 10px;
 }
+.newPostForm {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+}
+.h1 {
+    font-size: medium;
+}
+.title {
+    margin-bottom: 10px;
+}
+.body {
+    margin-bottom: 10px;
+}

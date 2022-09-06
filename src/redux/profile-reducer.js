@@ -1,5 +1,5 @@
 import {profileAPI} from "../api/api";
-
+const SET_POSTS = 'social_network/profile/SET_POSTS'
 const ADD_POST = 'social_network/profile/ADD-POST'
 const DELETE_POST = 'social_network/profile/DELETE_POST'
 const SER_USER_PROFILE = 'social_network/profile/SET-USER-PROFILE'
@@ -9,10 +9,7 @@ const UPDATE_USER_PHOTO = 'social_network/profile/UPDATE_USER_PHOTO'
 const UPDATE_USER_INFO = 'social_network/profile/UPDATE_USER_INFO'
 
 let initialState = {
-    postsData: [
-        { id: 1, message: 'It is my first post', likeCount: 15,},
-        { id: 2, message: 'Hi, whats up', likeCount: 20,},
-    ],
+    postsData: null,
     profile: null,
     status: '',
     isFetching: false,
@@ -23,13 +20,18 @@ const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
             const newPost = {
-                id: 3,
-                message: action.post,
-                likeCount: 0,
+                id: 4,
+                title: action.title,
+                body: action.body,
             }
             return {
                 ...state,
-                postsData: [...state.postsData, newPost]
+                postsData: [newPost, ...state.postsData]
+            }
+        case SET_POSTS:
+            return {
+                ...state,
+                postsData: [...action.postsData]
             }
         case DELETE_POST:
             return {
@@ -66,10 +68,17 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 // actionCreators
-const addNewPostActionCreator = (post) => {
+const setPostsActionCreator = (postsData) => {
+    return {
+        type: SET_POSTS,
+        postsData
+    }
+}
+const addNewPostActionCreator = (title, body) => {
     return {
         type: ADD_POST,
-        post
+        title,
+        body
     }
 }
 const deletePostActionCreator = (postId) => {
@@ -107,7 +116,10 @@ export const getUserProfileThunk = (userId) => async (dispatch) => {
     let data = await profileAPI.getUserProfile(userId)
     dispatch(setUserProfile(data))
 }
-
+export const getUserPosts = () => async (dispatch) => {
+    let posts = await profileAPI.getUserPosts()
+    dispatch(setPostsActionCreator(posts.reverse()))
+}
 export const saveUserPhoto = (photo) => async (dispatch) => {
     let data = await profileAPI.uploadUserPhoto(photo)
     

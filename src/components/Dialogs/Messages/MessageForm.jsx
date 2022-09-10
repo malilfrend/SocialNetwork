@@ -1,6 +1,8 @@
 import React from 'react';
 import classes from "./Messages.module.css";
 import {Formik, Form, Field, ErrorMessage} from "formik";
+import {TextField} from "@mui/material";
+import Button from "@mui/material/Button";
 
 const MessageForm = (props) => {
 	return (
@@ -11,12 +13,18 @@ const MessageForm = (props) => {
 				resetForm({values: ''})
 			}}
 		>
-			{() => (
+			{({values, handleChange}) => (
 				<Form>
-					<Field placeholder={'type your message'} type={'text'} name={'message'}/>
-					<button className={classes.send_btn} type={'submit'}>
+					<TextField
+						fullWidth
+						value={values.message}
+						onChange={handleChange}
+						placeholder={'type your message'}
+						type={'text'} name={'message'}
+					/>
+					<Button className={classes.send_btn} type={'submit'} >
 						Send
-					</button>
+					</Button>
 				</Form>
 			)}
 		</Formik>

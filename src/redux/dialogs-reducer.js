@@ -10,9 +10,9 @@ let initialState = {
         {id: 6, name: 'Roma'}
     ],
     messagesData: [
-        // {id: 1, text: 'Hi, whats up'},
-        // {id: 2, text: 'hi, its ok'},
-        // {id: 3, text: 'goodjob'}
+        {id: 1, text: 'Hi, whats up'},
+        {id: 2, text: 'hi, its ok'},
+        {id: 3, text: 'I wanna c u'},
     ],
 }
 

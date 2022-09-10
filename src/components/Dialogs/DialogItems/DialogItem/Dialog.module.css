@@ -1,3 +1,11 @@
-.dialogs_item {
+.dialog_item {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 10px;
     padding: 20px;
+    margin-bottom: 10px;
+    width: 20vw;
+}
+.userPhoto img {
+    width: 40px;
 }

@@ -10,23 +10,23 @@ import FullName from "./fullName/FullName";
 import AboutMe from "./aboutMe/AboutMe";
 
 const ProfileInfo = (props) => {
-	const [editProfile, setEditProfile] = useState(false)
-	const onEditProfile = () => {
-		setEditProfile(!editProfile)
-	}
+	// const [editProfile, setEditProfile] = useState(false)
+	// const onEditProfile = () => {
+	// 	setEditProfile(!editProfile)
+	// }
 	
 	return (
 		<div className={classes.profileInfo}>
 			{props.isOwner &&
 				<div className={classes.editBtnBlock}>
-					<EditIcon onClick={onEditProfile} className={classes.editBtn}/>
+					<EditIcon onClick={props.onEditProfile} className={classes.editBtn}/>
 				</div>
 			}
 			{
-				!editProfile ? <ProfileData {...props}/> :
+				!props.editProfile ? <ProfileData {...props}/> :
 					<ProfileDataForm
 						profile={props.profile}
-						onEditProfile={onEditProfile}
+						onEditProfile={props.onEditProfile}
 						updateUserInfoThunk={props.updateUserInfoThunk}
 					/>
 			}

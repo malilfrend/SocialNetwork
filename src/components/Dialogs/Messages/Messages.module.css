@@ -5,4 +5,16 @@
 
 .messages {
     padding: 20px;
+    height: 60vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.messagesElements {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-grow: 1;
+    overflow: auto;
+    bottom: 0;
 }

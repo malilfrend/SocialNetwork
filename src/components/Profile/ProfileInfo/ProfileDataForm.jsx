@@ -4,6 +4,7 @@ import withRouter from "../../HOC/withRouter";
 import userInfoFormSchema from "../../formValidations/UserInfoFormSchema";
 import Button from '@mui/material/Button';
 import {Checkbox, TextareaAutosize, TextField} from "@mui/material";
+import classes from './ProfileInfo.module.css'
 
 
 const ProfileDataForm = ({profile, updateUserInfoThunk, onEditProfile}) => {
@@ -86,49 +87,49 @@ const ProfileDataForm = ({profile, updateUserInfoThunk, onEditProfile}) => {
 							Your contacts:
 							<br/>
 							<div>
-								<label htmlFor={'github'}>github</label>
+								<label htmlFor={'github'} className={classes.label}>Github</label>
 								<TextField value={values.github} fullWidth id="filled-basic" variant="filled"
 								           onChange={handleChange} type={'text'} name={'github'}/>
 								<ErrorMessage name="github" component="div"/>
 							</div>
 							<div>
-								<label htmlFor={'vk'}>vk</label>
+								<label htmlFor={'vk'} className={classes.label}>VK</label>
 								<TextField value={values.vk} fullWidth id="filled-basic" variant="filled"
 								           onChange={handleChange} type={'text'} name={'vk'}/>
 								<ErrorMessage name="vk" component="div"/>
 							</div>
 							<div>
-								<label htmlFor={'facebook'}>facebook</label>
+								<label htmlFor={'facebook'} className={classes.label}>Facebook</label>
 								<TextField value={values.facebook} fullWidth id="filled-basic" variant="filled"
 								           onChange={handleChange} type={'text'} name={'facebook'}/>
 								<ErrorMessage name="facebook" component="div"/>
 							</div>
 							<div>
-								<label htmlFor={'instagram'}>instagram</label>
+								<label htmlFor={'instagram'} className={classes.label}>Instagram</label>
 								<TextField value={values.instagram} fullWidth id="filled-basic" variant="filled"
 								           onChange={handleChange} type={'text'} name={'instagram'}/>
 								<ErrorMessage name="instagram" component="div"/>
 							</div>
 							<div>
-								<label htmlFor={'twitter'}>twitter</label>
+								<label htmlFor={'twitter'} className={classes.label}>Twitter</label>
 								<TextField value={values.twitter} fullWidth id="filled-basic" variant="filled"
 								           onChange={handleChange} type={'text'} name={'twitter'}/>
 								<ErrorMessage name="twitter" component="div"/>
 							</div>
 							<div>
-								<label htmlFor={'website'}>website</label>
+								<label htmlFor={'website'} className={classes.label}>Website</label>
 								<TextField value={values.website} fullWidth id="filled-basic" variant="filled"
 								           onChange={handleChange} type={'text'} name={'website'}/>
 								<ErrorMessage name="website" component="div"/>
 							</div>
 							<div>
-								<label htmlFor={'youtube'}>youtube</label>
+								<label htmlFor={'youtube'} className={classes.label}>Youtube</label>
 								<TextField value={values.youtube} fullWidth id="filled-basic" variant="filled"
 								           onChange={handleChange} type={'text'} name={'youtube'}/>
 								<ErrorMessage name="youtube" component="div"/>
 							</div>
 							<div>
-								<label htmlFor={'mainLink'}>mainLink</label>
+								<label htmlFor={'mainLink'} className={classes.label}>MainLink</label>
 								<TextField value={values.mainLink} fullWidth id="filled-basic" variant="filled"
 								           onChange={handleChange} type={'text'} name={'mainLink'}/>
 								<ErrorMessage name="mainLink" component="div"/>

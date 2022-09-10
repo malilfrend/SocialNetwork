@@ -4,8 +4,8 @@ import Post from "./Post/Post";
 import MyPostsForm from "./MyPostsForm";
 
 const MyPosts = (props) => {
-	
-	if(!props.postsData) {
+	const editProfile = props.editProfile
+	if (!props.postsData) {
 		return <div>Skeleton</div>
 	}
 	let postsElements = props?.postsData
@@ -16,18 +16,24 @@ const MyPosts = (props) => {
 	const onSubmit = (title, body) => {
 		props.addNewPost(title, body)
 	}
-
+	
 	return (
-		<div className={classes.myPosts}>
-			<h1 className={classes.h1}>My posts</h1>
-			<div className={classes.new_posts}>
-			
-			</div>
-			<div className={classes.posts}>
-				<MyPostsForm onSubmit={onSubmit}/>
-				{postsElements}
-			</div>
+		<div>
+			{
+				!editProfile ? 	<div className={classes.myPosts}>
+					<h1 className={classes.h1}>My posts</h1>
+					<div className={classes.new_posts}>
+					
+					</div>
+					<div className={classes.posts}>
+						<MyPostsForm onSubmit={onSubmit}/>
+						{postsElements}
+					</div>
+				</div>
+					: null
+			}
 		</div>
+	
 	)
 }
 

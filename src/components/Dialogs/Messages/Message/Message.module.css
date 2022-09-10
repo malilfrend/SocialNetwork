@@ -1,5 +1,5 @@
 .message {
-    background-color: greenyellow;
+    margin: 0 5px 5px 5px;
 }
 .message:nth-child(2n) {
     text-align: end;
